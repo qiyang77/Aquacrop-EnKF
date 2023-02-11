@@ -2,7 +2,7 @@
 A crop growth simulation system based on Aquacrop-OS crop model and ensemble Kalman filter.
 
 # Highlights
-##Assimilating phenological observations without disturbing the model clock/timeline.
+## Assimilating phenological observations without disturbing the model clock/timeline.
 
 **Context or problem:** in crop growth data assimilation systems, the mismatch between simulated and observed phenology significantly deteriorates the performance of crop growth modeling. This situation may be more severe for smallholder farmers-managed fields, where the phenological heterogeneity was high even when climate condition was relatively uniform. Previous studies investigated the non-sequential methods to retrospectively assimilate historical phenology observations. However, approaches to dynamically assimilating phenological measurements through sequential data assimilation methods remain unexplored
 
