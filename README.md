@@ -28,6 +28,8 @@ Or refer to [this page](https://www.mathworks.com/help/matlab/matlab_external/in
 
 ## Two-step global sensitivity analysis
 
+```pip install salib # install the external SA lib```
+
 **rain_frequency_sort.py:** this script is used to find out the typical year (i.e., wet, normal, and dry year) from stochastic weather data.
 
 **SA_aquacrop_morris.py:** Morris methods (Morris, 1991) to screen out the insensitive parameters in AquaCropOS (parameter details were described in the supplementary
