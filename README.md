@@ -38,8 +38,13 @@ Morris, M.D., 1991. Factorial sampling plans for preliminary computational exper
 Sobol’, I.M., 1990. On sensitivity estimation for nonlinear mathematical models. Mat. Model 2, 112–118.
 
 ##  Observing System Simulation Experiments (OSSE)
+
 **DAA_EnKF_batchOSS.py:** assimilating only measurements of canopy cover (CC).
+
 **DAA_EnKF_batchOSS_phenoShift.py:** assimilating only measurements of canopy cover (CC) with wrong planting date.
+
 **DAA_EnKF_batchOSS_2obs.py:** assimilating canopy cover (CC) and aboveground biomass.
+
 **DAA_EnKF_batchOSS_3obs_phenoShift.py:** assimilating Canopy Cover (CC) and aboveground biomass, and phenology (represented by GDD) with wrong planting date.
+
 **DAA_EnKF_batchOSS_3obs_phenoShift_restartEnKF.py:** assimilating Canopy Cover (CC) and aboveground biomass, and phenology (represented by GDD) with wrong planting date using restartEnKF strategy.
