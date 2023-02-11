@@ -1,0 +1,142 @@
+20/3/21
+改了AerationStress.m里面的LagAer（默认3天）
+改了Transpiration.m里面Crop.LagAer, 原程序计算Tr的来源分为来着surf和来自soil.
+Tr checked
+EsX checked
+
+20/3/23
+surf有区别
+Es有区别
+改了输入soil中的adjust为Y
+改了Transpiration.m里面NewCond.SurfaceStorage <(fSub*TrPot0)
+surf 在某些时候还是有0.1mm的差别，确定是infiltration里面Runoff的问题（未解决，差别太小不影响）
+
+20/3/24
+uqdate CO2 file to offical Aquacrop6.1 file.
+BUG: fsink 没有除100， 已修改AOS_ComputeVariables.m and ResetInitialCondititions.m
+
+20/3/25
+AOS_ReadWeatherInput.m  headerlines 2 to 1. 不然少读一行数据
+输出加入了Dr,TAW
+
+20/3/26
+输出加入了GrowthStage
+revised the threshold early senescence in AOS_CanopyCover.m (Ksw.Sen)
+
+20/9/2
+AOS_CCDevelopment.m
+CC = CCx*(1-0.05*(exp(dt*CDC*3.33*((CCx+2.29)/(CCx0+2.29))/(CCx+2.29))-1));
+改为 CC= CCx*(1-0.05*(exp(dt*CDC*3.33/(CCx0+2.29))-1))；
+因为原式子先乘后除等于没有计算
+
+20/9/3
+更改的actual CC 在 decline 时期的计算方式，因为原码不依赖InitCond.CC 来计算下一天的CC
+改为计算 delta CC ，再计算CC = InitCond.CC + deltaCC
+
+20/9/10
+更改（ComputeCropCalendar.m）里    if Crop.HIend > Crop.Maturity ；  Crop.HIend = Crop.Maturity;
+
+20/9/24
+更改（AOS_CanopyCover.m）里   计算 tReq2 = (log(1+(1-InitCond.CC/NewCond.CCxEarlySen)/0.05))...
+                        /((CDCadj*3.33)/(NewCond.CCxEarlySen+2.29)); 时，
+当，InitCond.CC > NewCond.CCxEarlySen 时（ENKF update 之后会出现）会出现复数，因此此时改为NewCond.CCxEarlySen = InitCond.CC
+
+20/10/5
+更改AOS_Transpiration.m里 Kcb_NS \Kcb可能会为负的问题
+
+21/03/10
+增加水稻冻死的模块,低于12度三天直接死。
+“SA(YQ)_ReadModelParameters.m”中增加LagCold = 3;Tfreeze = 12参数
+“SA(AOS)_ReadModelInitialConditions.m” 中增加freezeDay 状态
+“AOS_Solution”中增加NewCond.CropDead = true的模块
+
+21/7/21
+SA_calSIM_END_by_GDD.m line 43
+sim_e = datestr(StartDate + count + 30, 'yyyy-mm-dd'); % by Qi 2021/7/21 aviod the GDD update fail
+避免更新GDD导致更新的天气长度不足
+
+21/7/22
+DA_updateCalendar.m line12
+dateS = AOS_ClockStruct.PlantingDate_predefined; % fix the predefined date to compute the currentDate , Qi 2021-7-23
+currentDate = datestr(dateS + AOS_InitialiseStruct.InitialCondition.DAP, 'yyyy-mm-dd');% currentDate is the predefined date
+从预设的当前日期更新plantingdate，避免之前叠加更新的错误。
+
+21/7/24
+DA_updateCalendar.m line16
+AOS_InitialiseStruct.InitialCondition.DAP = (dateS + AOS_InitialiseStruct.InitialCondition.DAP) - plantingDateNum; % update the DAP, by Qi 2021-7-24
+更新DAP，避免由DAP导致的物候错误
+currentDate = datestr(dateS + AOS_ClockStruct.TimeStepCounter -1, 'yyyy-mm-dd');% by Qi 2021-7-24, AOS_ClockStruct.TimeStepCounter is keep unchanged
+对应的currentDate不被修改
+
+21/7/25
+AOS_CanopyCover.m line183
+if (cct == 0) && (cct_1 == 0) % by Qi 2021-7-25, shut down the simulation when CC is too low.
+       delta_CC = -0.02;
+else
+       delta_CC = cct - cct_1;
+end
+NewCond.CC = InitCond.CC + delta_CC;
+
+AOS_HIrefCurrentDay.m line51-80
+把HIref变成一个累积量，不然更新GDD时HIref会跳动
+
+21/7/27
+AOS_HIrefCurrentDay.m line86
+%             elseif NewCond.HIref <= (Crop.HIini+0.004) % discard by Qi 2021-7-27 to aviod HI equal 0 after DAP updated
+
+21/7/29
+① DA_updateCalendar.m lin66-78 更新DAP后重新同步sCor1sCor2两参数，不然HIadj计算错误会使得同化GDD后HIadj陡升
+%% update sCor1 and sCor2 (HIadjPostAnthesis parameters) by Qi 2021-7-29
+DayCor = AOS_InitialiseStruct.InitialCondition.DAP-AOS_InitialiseStruct.InitialCondition.DelayedCDs...
+    -1-AOS_InitialiseStruct.Parameter.Crop.(CropNames{ii}).HIstartCD;
+if DayCor > 0
+    if length(AOS_InitialiseStruct.InitialCondition.dCor1_list)>=DayCor
+        AOS_InitialiseStruct.InitialCondition.sCor1 = sum(AOS_InitialiseStruct.InitialCondition.dCor1_list(end-DayCor+1:end));
+    else
+        AOS_InitialiseStruct.InitialCondition.sCor1 = DayCor*mean(AOS_InitialiseStruct.InitialCondition.dCor1_list);
+    end
+    if length(AOS_InitialiseStruct.InitialCondition.dCor2_list)>=DayCor
+        AOS_InitialiseStruct.InitialCondition.sCor2 = sum(AOS_InitialiseStruct.InitialCondition.dCor2_list(end-DayCor+1:end));     
+    else
+        AOS_InitialiseStruct.InitialCondition.sCor2 = DayCor*mean(AOS_InitialiseStruct.InitialCondition.dCor2_list); 
+    end
+    fprintf('DAP:%d,sCor1:%.2f,sCor2:%.2f\n',AOS_InitialiseStruct.InitialCondition.DAP,AOS_InitialiseStruct.InitialCondition.sCor1,...
+            AOS_InitialiseStruct.InitialCondition.sCor2)
+end
+
+AOS_HIadjPostAnthesis.m line16-21\31-36
+
+② AOS_UpdateTime line37-38\42-43
+  AOS_ClockStruct.StepStartTime = ...                                 % by Qi 2021-7-29, 
+            AOS_ClockStruct.TimeSpan(AOS_InitialiseStruct.InitialCondition.DAP+1);
+使得AOS_ClockStruct.StepStartTime等于currentTime，不然会出现使用天气数据错误的情况。
+
+③AOS_HIrefCurrentDay.m line23-29、54，使得HI成为累积量，避免更新GDD（小于HIstart）HI变成0的情况。
+if (HIt <= 0)&&(InitCond.HIref == 0)  %modified by Qi 21/7/29
+        % Yet to reach time for HI build-up
+        NewCond.HIref = 0;
+        NewCond.PctLagPhase = 0;
+    elseif (HIt <= 0)&&(InitCond.HIref ~= 0)  %added by Qi 21/7/29, aviod force update the HI after assmilating GDD
+           NewCond.HIref = InitCond.HIref; 
+    else
+
+2021/8/12
+AOS_CanopyCover.m line 160 ，and line117
+if InitCond.CC > Crop.CCx
+	InitCond.CC = Crop.CCx;
+end
+CGCadj = Crop.CGC*Ksw.Exp;
+tReq = AOS_CCRequiredTime(InitCond.CC,NewCond.CC0adj,...  % modified by Qi 2021/8/12, to make CC accumulative
+									Crop.CCx,CGCadj,Crop.CDC,dtCC,tCCadj,'CGC');
+if tReq > 0
+	% Calclate GDD's for canopy growth
+	tmp_tCC = tReq+dtCC;
+	% Determine new canopy size
+	NewCond.CC = AOS_CCDevelopment(Crop.CC0,Crop.CCx,... % modified by Qi 2021/8/12
+		Crop.CGC,Crop.CDC,tmp_tCC,'Growth',Crop.CCx);
+else
+	% No canopy growth
+	NewCond.CC = InitCond.CC;
+end
+
+解决更新的CC大于CCx就无法更新的情况（以及部分情况CC积累的问题）

@@ -1,0 +1,4 @@
+%% ------------------- Enter Location of Input files ------------------- %%
+C:\crop_model\Aquacrop\aquacropos_v60a\AquaCropOS_v60a/Input
+%% ------------------ Enter Location of Output files ------------------- %%
+C:\crop_model\Aquacrop\aquacropos_v60a\AquaCropOS_v60a/Output
