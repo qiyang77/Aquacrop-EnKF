@@ -1,0 +1,12 @@
+%% ---------------- Soil parameter inputs for AquaCropOS --------------- %%
+SoilProfile.txt     : Name of soil profile file
+N/A      : Name of soil texture file (if calculating soil hydraulic properties)
+SoilHydrology.txt   : Name of soil hydrology file (if pre-defining soil hydraulic properties)
+0                   : Calculate soil hydraulic properties (0 = No, 1 = Yes)  #unchanged
+2                 : Total thickness of soil profile (m)
+12                  : Total number of soil compartments
+2                   : Total number of soil layers
+1                   : Adjust default value for readily evaporable water (0 = No, 1 = Yes)  # changed
+10                  : Readily evaporable water (mm) (only used if adjusting from default value)
+77                  : Curve number
+-999                : Depth of restrictive soil layer (set to negative value if not present) 

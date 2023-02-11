@@ -1,0 +1,7 @@
+%% -------------- Initial soil water content for AquaCropOS ------------ %%
+Prop            : Type of value ('Prop' = 'WP'/'FC'/'SAT'; 'Num' = XXX m3/m3; 'Pct' = % TAW))
+Layer           : Method ('Depth' = Interpolate depth points; 'Layer' = Constant value for each soil layer)
+%% -------- Specify input data point (minimum of 1 point needed -------- %%
+Depth/Layer       Value
+1                 FC
+2                 FC

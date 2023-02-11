@@ -1,0 +1,60 @@
+%% ------------------ Crop parameters for AquaCropOS ------------------- %%
+3           : Crop Type (1 = Leafy vegetable, 2 = Root/tuber, 3 = Fruit/grain)
+0           : Planting method (0 = Transplanted, 1 =  Sown)
+2           : Calendar Type (1 = Calendar days, 2 = Growing degree days)
+1           : Convert calendar to GDD mode if inputs are given in calendar days (0 = No; 1 = Yes)
+N/A       : Planting Date (dd/mm)
+N/A       : Latest Harvest Date (dd/mm)
+50          : Growing degree/Calendar days from sowing to emergence/transplant recovery
+370         : Growing degree/Calendar days from sowing to maximum rooting
+1300        : Growing degree/Calendar days from sowing to senescence
+1900        : Growing degree/Calendar days from sowing to maturity
+1150        : Growing degree/Calendar days from sowing to start of yield formation
+350         : Duration of flowering in growing degree/calendar days (-999 for non-fruit/grain crops)
+680         : Duration of yield formation in growing degree/calendar days
+2           : Growing degree day calculation method
+8           : Base temperature (degC) below which growth does not progress
+30          : Upper temperature (degC) above which crop development no longer increases
+1           : Pollination affected by heat stress (0 = No, 1 = Yes)
+35          : Maximum air temperature (degC) above which pollination begins to fail
+45          : Maximum air temperature (degC) at which pollination completely fails  # unchange
+1           : Pollination affected by cold stress (0 = No, 1 = Yes)
+8           : Minimum air temperature (degC) below which pollination begins to fail
+5           : Minimum air temperature (degC) at which pollination completely fails  # unchange
+1           : Transpiration affected by cold temperature stress (0 = No, 1 = Yes) 
+10          : Minimum growing degree days (degC/day) required for full crop transpiration potential
+0           : Growing degree days (degC/day) at which no crop transpiration occurs  # unchange
+0.3         : Minimum effective rooting depth (m)
+0.5         : Maximum rooting depth (m)
+2.5         : Shape factor describing root expansion  # something wrong, 25 in aquacrop6.1
+0.0480      : Maximum root water extraction at top of the root zone (m3/m3/day)
+0.0120      : Maximum root water extraction at the bottom of the root zone (m3/m3/day)
+6.0         : Soil surface area (cm2) covered by an individual seedling at 90% emergence
+1000000     : Number of plants per hectare
+0.95        : Maximum canopy cover (fraction of soil cover)
+0.005003    : Canopy decline coefficient (fraction per GDD/calendar day)
+0.007004    : Canopy growth coefficient (fraction per GDD)
+1.1         : Crop coefficient when canopy growth is complete but prior to senescence
+0.15        : Decline of crop coefficient due to ageing (%/day)
+19.0        : Water productivity normalized for ET0 and C02 (g/m2)
+100         : Adjustment of water productivity in yield formation stage (% of WP)
+50          : Crop performance under elevated atmospheric CO2 concentration (%)
+0.43        : Reference harvest index
+0           : Possible increase of harvest index due to water stress before flowering (%)
+10          : Coefficient describing positive impact on harvest index of restricted vegetative growth during yield formation 
+7           : Coefficient describing negative impact on harvest index of stomatal closure during yield formation 
+15          : Maximum allowable increase of harvest index above reference value
+1           : Crop Determinancy (0 = Indeterminant, 1 = Determinant) 
+100         : Excess of potential fruits
+0.00        : Upper soil water depletion threshold for water stress effects on affect canopy expansion 
+0.50        : Upper soil water depletion threshold for water stress effects on canopy stomatal control
+0.55        : Upper soil water depletion threshold for water stress effects on canopy senescence 
+0.75        : Upper soil water depletion threshold for water stress effects on canopy pollination 
+0.40        : Lower soil water depletion threshold for water stress effects on canopy expansion 
+1           : Lower soil water depletion threshold for water stress effects on canopy stomatal control   # unchange
+1           : Lower soil water depletion threshold for water stress effects on canopy senescence   # unchange
+1           : Lower soil water depletion threshold for water stress effects on canopy pollination   # unchange
+3           : Shape factor describing water stress effects on canopy expansion 
+3           : Shape factor describing water stress effects on stomatal control 
+3           : Shape factor describing water stress effects on canopy senescence 
+2.7         : Shape factor describing water stress effects on pollination   # unchange

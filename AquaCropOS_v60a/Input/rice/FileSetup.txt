@@ -1,0 +1,11 @@
+%% ------------------ Input filenames for AquaCropOS ------------------ %%
+Clock.txt                       : Clock filename
+Fl080211_2000_10.cli            : Weather filename
+CropMix.txt                     : Crop mix filename
+Soil.txt                        : Soil parameters filename
+FieldManagement_OffSeason.txt   : Field management (fallow period) filename
+InitialWaterContent.txt         : Initial water content filename
+WaterTable.txt                  : Groundwater table filename
+MaunaLoaCO2.txt                 : CO2 concentration time-series filename
+Sample                          : Output filename (.txt)
+Y                               : Write daily outputs (Y or N)

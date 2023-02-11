@@ -1,0 +1,7 @@
+%% -------------- Crop rotation time-series for AquaCropOS ------------- %%
+PlantDate        HarvestDate      Crop
+01/05/2010       30/09/2010       Maize
+01/05/2011       30/09/2011	      Maize
+01/05/2012       30/09/2012       Maize
+01/05/2013       30/09/2013       Maize
+01/05/2014       30/09/2014       Maize

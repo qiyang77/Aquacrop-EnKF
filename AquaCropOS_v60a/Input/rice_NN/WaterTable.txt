@@ -1,0 +1,5 @@
+%% ----------------- Groundwater table for AquaCropOS ------------------ %%
+N           : Water table considered (Y or N)
+Constant    : Water table input data ('Constant' or 'Variable')
+%% -------------------- Water table observations (m) ------------------- %%
+Date(dd/mm/yyyy)    Depth(m)

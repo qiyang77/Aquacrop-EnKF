@@ -1,0 +1,7 @@
+%% ---------------- Crop mix options for AquaCropOS -------------------- %%
+1                       : Number of crop types to be simulated
+N                       : Specified crop rotation calendar (Y or N)
+N/A        : Crop rotation filename
+%% ---------------- Information about each crop type ------------------- %%
+CropType   CropFilename   IrrigationFilename         FieldMngtFilename
+Maize      Crop.txt       IrrigationManagement.txt   FieldManagement.txt

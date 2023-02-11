@@ -1,0 +1,2 @@
+Season    CropType    PlantDate      PlantSimDate        HarvestDate    HarvestSimDate      Yield       TotIrr      
+1         RiceGDD     15/07/2000     1                   08/11/2000     117                 7.06        0.00        

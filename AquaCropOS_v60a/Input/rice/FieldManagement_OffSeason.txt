@@ -1,0 +1,10 @@
+%% --------------- Field management inputs for AquaCropOS -------------- %%
+N               : Soil surface covered by mulches (Y or N)
+Y               : Surface bunds present (Y or N)
+N               : Field conditions affect curve number (Y or N)  # unchange
+Y               : Management practices fully inhibit surface runoff (Y or N)
+0               : Area of soil surface covered by mulches growing season (%)
+0.5             : Soil evaporation adjustment factor due to effect of mulches
+0.2             : Bund height (m)
+0               : Initial water height in surface bunds (mm)
+0               : Percentage change in curve number (positive or negative)  # unchange
