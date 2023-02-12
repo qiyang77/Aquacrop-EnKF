@@ -6,9 +6,7 @@ A crop growth simulation system based on Aquacrop-OS crop model and ensemble Kal
 
 **Context or problem:** in crop growth data assimilation systems, the mismatch between simulated and observed phenology significantly deteriorates the performance of crop growth modeling. This situation may be more severe for smallholder farmers-managed fields, where the phenological heterogeneity was high even when climate condition was relatively uniform. Previous studies investigated the non-sequential methods to retrospectively assimilate historical phenology observations. However, approaches to dynamically assimilating phenological measurements through sequential data assimilation methods remain unexplored
 
-**Objective or research question:** one of the most intractable challenges of dynamic phenology assimilation is that aconsiderable proportion of model parameters and variables are entangled with phenology, therefore simply assimilating phenological measurements could disturb the model clock. This study aims to establish a robust crop
-data assimilation framework capable of assimilating phenological measurements in real time without disturbing the model clock.
-Source code will be available after the paper "Improving rice growth simulation and yield estimation by assimilating phenological observations sequentially via ensemble Kalman filter" is published.
+**Objective or research question:** one of the most intractable challenges of dynamic phenology assimilation is that aconsiderable proportion of model parameters and variables are entangled with phenology, therefore simply assimilating phenological measurements could disturb the model clock. This study aims to establish a robust crop data assimilation framework capable of assimilating phenological measurements in real time without disturbing the model clock.
 
 **Citation:** Yang, Q., Shi, L., Han, J., Zha, Y., Yu, J., Wu, W. and Huang, K., 2023. Regulating the time of the crop model clock: A data assimilation framework for regions with high phenological heterogeneity. Field Crops Research, 293, p.108847.
 
